@@ -1,0 +1,22 @@
+{
+    "dest": "./dist",
+    "src": [
+        {
+            "type": "file",
+            "src": "./layin/index.js"
+        },
+        {
+            "type": "folder",
+            "src": "./layin/dist/layin",
+            "dest": "dist"
+        },
+        {
+            "type": "file",
+            "src": "./README.md"
+        },
+        {
+            "type": "file",
+            "src": "./LICENSE"
+        }
+    ]
+}
