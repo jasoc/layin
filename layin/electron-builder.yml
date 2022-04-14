@@ -1,0 +1,16 @@
+productName: "Layin"
+appId: "com.gnome.layin"
+
+files:
+  - "index.js"
+  - from: "dist/layin"
+    to: "."
+    filter:
+      - "**/*"
+
+linux:
+  category: Development
+  target:
+    - "AppImage"
+    - "pacman"
+    - "flatpak"

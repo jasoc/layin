@@ -1,34 +1,54 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
 
 let win;
 
 const args = process.argv.slice(1),
-      dist = args.some(val => val === '--dist');
+      serve = args.some(val => val === '--serve');
+
+function getIndex() {
+
+    const positions = [
+        'index.html',
+        'dist/layin/index.html',
+        'dist/index.html',
+    ].map(p => path.join(__dirname, p));
+
+    for (let position of positions) {
+        if (fs.existsSync(position)) {
+            return position;
+        }
+    }
+
+    return positions[0];
+}
 
 function createWindow () {
-    win = new BrowserWindow({width: 800, height: 600})
-
-    if (dist) {
-        let pathIndex = './index.html';
-
-        if (fs.existsSync(path.join(__dirname, '../dist/index.html'))) {
-            pathIndex = '../dist/index.html';
+    win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
         }
+    });
+
+    if (serve) {
+        win.loadURL('http://localhost:4200');
+    }
+    else {
 
         win.loadURL(url.format({
-        pathname: path.join(__dirname, pathIndex),
-        protocol: 'file:',
-        slashes: true
+            pathname: getIndex(),
+            protocol: 'file:',
+            slashes: true
         }));
-    } else {
-        win.loadURL('http://localhost:4200');
     }
 
     win.on('closed', () => {
         win = null;
-    })
+    });
 }
 
 app.on('ready', createWindow);

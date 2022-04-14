@@ -1,13 +1,28 @@
 {
   "name": "layin",
-  "version": "0.0.0",
+  "email": "paridegiunta@gmail.com",
+  "description": "An application inspired to Windows Power Toys to create a layouts on screens to place windows on, simply pressing a key and dragging it.",
+  "homepage": "https://github.com/jasoc/layin",
+  "author": "Paride Giunta <paridegiunta@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jasoc/layin.git"
+  },
+  "version": "0.0.1",
   "scripts": {
-    "start": "run-p ng:start electron:start",
-    "ng:start": "ng serve",
-    "electron:start": "wait-on tcp:4200 && electron index.js",
-    "build": "ng build",
+    "start": "run-p ng:serve electron:serve",
+    "start:dist": "run-p electron:start",
+    "ng:serve": "ng serve",
+    "electron:serve": "wait-on tcp:4200 && electron index.js",
+    "electron:start": "electron index.js",
+    "build": "npm run ng:build && npm run electron:build",
+    "ng:build": "ng build --base-href \"./\"",
+    "electron:build": "npx electron-builder build --config electron-builder.yml",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
+  },
+  "build": {
+    "appId": "com.example.app"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +49,7 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "electron": "^18.0.3",
+    "electron-builder": "^23.0.3",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
