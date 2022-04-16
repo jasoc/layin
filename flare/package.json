@@ -1,0 +1,19 @@
+{
+  "name": "layin",
+  "description": "An application inspired to Windows Power Toys to create a layouts on screens to place windows on, simply pressing a key and dragging it.",
+  "homepage": "https://github.com/jasoc/layin",
+  "author": "Paride Giunta <paridegiunta@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jasoc/layin.git"
+  },
+  "version": "0.0.1",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "private": true,
+  "dependencies": {
+    "typescript": "^4.6.3"
+  }
+}

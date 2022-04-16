@@ -1,0 +1,26 @@
+productName: "Layin"
+appId: "com.jasoc.layin"
+directories:
+  output: "../dist"
+
+asar: false
+
+files:
+
+  - "package.json"
+
+  - from: "./dist"
+    to: "."
+    filter:
+      - "**/*"
+
+  - from: "../gui/dist/layin"
+    to: "."
+    filter:
+      - "**/*"
+
+linux:
+  category: Development
+  target:
+    - "AppImage"
+    - "pacman"
